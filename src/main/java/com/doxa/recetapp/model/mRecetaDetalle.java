@@ -5,6 +5,8 @@
  */
 package com.doxa.recetapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import lombok.Data;
@@ -18,9 +20,13 @@ import lombok.Data;
 public class mRecetaDetalle {
     
     @EmbeddedId
-    private mpkRecetaDetalle mpkrecetasdetalles;
+    @JsonView({View.SummaryRecetaMedicamento.class})
+    private mpkRecetaDetalle mpkrecetadetalle;
     
+    @JsonView({View.SummaryRecetaMedicamento.class})
     private String indicaciones;
-    private String dosis;
     
+    @JsonView({View.SummaryRecetaMedicamento.class})
+    private String dosis;
+
 }
