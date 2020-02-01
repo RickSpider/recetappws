@@ -5,19 +5,27 @@
  */
 package com.doxa.recetapp.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import lombok.Data;
 
 /**
  *
  * @author BlackSpider
  */
 @Entity(name="medicamentos")
+@Data
 class mMedicamento {
     
     @Id
+    @JsonView({View.SummaryRecetaMedicamento.class})
     private Long medicamentoid;
+    
+    @JsonView({View.SummaryRecetaMedicamento.class})
     private String medicamento;
+    
+    @JsonView({View.SummaryRecetaMedicamento.class})
     private String observacion;
     
 }

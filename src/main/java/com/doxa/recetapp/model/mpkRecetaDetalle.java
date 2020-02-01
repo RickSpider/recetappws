@@ -5,6 +5,7 @@
  */
 package com.doxa.recetapp.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import java.io.Serializable;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
@@ -25,6 +26,7 @@ public class mpkRecetaDetalle implements Serializable {
        
        @ManyToOne
        @JoinColumn(name="medicamentoid")
+       @JsonView({View.SummaryRecetaMedicamento.class})
        private mMedicamento mmedicamento;
     
 }
