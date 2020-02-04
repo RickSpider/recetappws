@@ -5,6 +5,7 @@
  */
 package com.doxa.recetapp.repository;
 
+import com.doxa.recetapp.model.mMedico;
 import com.doxa.recetapp.model.mPaciente;
 import com.doxa.recetapp.model.mReceta;
 import org.springframework.data.repository.CrudRepository;
@@ -16,5 +17,5 @@ import org.springframework.data.repository.CrudRepository;
 public interface rReceta extends CrudRepository<mReceta, Long> {
     
     Iterable<mReceta> findByMpaciente (mPaciente mpaciente);
-    
-}
+    Iterable<mReceta> findByMpacienteAndMmedico (mPaciente mpaciente, mMedico mmedico);
+ }
