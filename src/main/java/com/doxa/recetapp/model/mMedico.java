@@ -5,7 +5,9 @@
  */
 package com.doxa.recetapp.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -27,7 +29,7 @@ public class mMedico {
     @Id
     private Long medicoid;
     
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
     @PrimaryKeyJoinColumn
     private mPersona mpersona;
     
