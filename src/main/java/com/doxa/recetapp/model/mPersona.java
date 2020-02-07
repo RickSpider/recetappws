@@ -8,13 +8,17 @@ package com.doxa.recetapp.model;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -35,20 +39,11 @@ public class mPersona implements Serializable {
     private String password;
     private String genero;
     
-  /*  @Temporal(TemporalType.DATE)
-    private Calendar fchnacimiento;*/
+    @ManyToOne
+    @JoinColumn(name="ciudadid")
+    private mCiudad mciudad;
     
-   
-    /*@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY )
-    @PrimaryKeyJoinColumn  
-    private mPaciente mpaciente;*/
-   
-    
-   /* public String getFchnacimiento(){
-    
-        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
-        return sdf.format(fchnacimiento);
-        
-    }*/
+    @Temporal(TemporalType.DATE)
+    private Calendar fchnacimiento;
     
 }
