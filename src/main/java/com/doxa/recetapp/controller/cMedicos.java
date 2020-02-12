@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -52,6 +53,17 @@ public class cMedicos {
         mmedico.setMedicoid(persona.getPersonaid());
         rmedico.save(mmedico);
         
+    }
+    
+    @PutMapping("/")
+    public @ResponseBody void putMedico(@RequestBody mMedico mmedico){
+    
+        mPersona persona = mmedico.getMpersona();
+        rpersona.save(persona);
+        
+        mmedico.setMedicoid(persona.getPersonaid());
+        rmedico.save(mmedico);
+    
     }
     
   

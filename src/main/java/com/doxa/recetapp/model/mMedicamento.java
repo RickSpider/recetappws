@@ -16,7 +16,7 @@ import lombok.Data;
  */
 @Entity(name="medicamentos")
 @Data
-class mMedicamento {
+public class mMedicamento {
     
     @Id
     @JsonView({View.SummaryRecetaMedicamento.class})
