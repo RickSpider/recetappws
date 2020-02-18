@@ -7,8 +7,14 @@ package com.doxa.recetapp.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Set;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,6 +34,7 @@ import org.hibernate.annotations.CreationTimestamp;
 public class mReceta {
     
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long recetaid;
     
     @ManyToOne
@@ -49,7 +56,11 @@ public class mReceta {
     private String diagnostico;
     private String estado;
     
-      public String getFchreceta() {
+    @ElementCollection(fetch = FetchType.LAZY)
+    @CollectionTable(name = "recetasdetalles", joinColumns= {@JoinColumn(name = "recetaid", referencedColumnName ="recetaid")})
+    private Set<mRecetaDetalles> mlrecetadetalle;
+    
+    public String getFchreceta() {
         return sdf.format(fchreceta);
     }
     
