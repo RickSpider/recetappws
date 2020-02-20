@@ -6,23 +6,13 @@
 package com.doxa.recetapp.model;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
 
 /**
  *
@@ -33,7 +23,7 @@ import org.hibernate.annotations.CreationTimestamp;
 public class mPaciente implements Serializable{
     
     @Id
-     private long pacienteid;
+    private long pacienteid;
     
     
     @OneToOne(cascade=CascadeType.ALL, fetch = FetchType.LAZY)

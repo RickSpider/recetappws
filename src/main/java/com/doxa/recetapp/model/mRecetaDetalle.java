@@ -5,7 +5,6 @@
  */
 package com.doxa.recetapp.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;

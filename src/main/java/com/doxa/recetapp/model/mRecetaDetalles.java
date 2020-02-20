@@ -5,7 +5,6 @@
  */
 package com.doxa.recetapp.model;
 
-import com.fasterxml.jackson.annotation.JsonView;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;

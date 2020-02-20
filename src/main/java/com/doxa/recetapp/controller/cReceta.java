@@ -15,6 +15,7 @@ import com.doxa.recetapp.repository.rRecetaDetalle;
 import com.fasterxml.jackson.annotation.JsonView;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,19 +43,18 @@ public class cReceta {
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody void postReceta(@RequestBody mReceta mreceta){
-    
+
         rreceta.save(mreceta);
         
     }
     
     @GetMapping("/paciente/{pacienteid}")
     public @ResponseBody Iterable<mReceta> recetas(@PathVariable Long pacienteid){
-        
+             
        mPaciente mpaciente = new mPaciente();
        mpaciente.setPacienteid(pacienteid);
-       
-       return rreceta.findByMpaciente(mpaciente);
-       
+
+       return rreceta.findByMpaciente(mpaciente, Sort.by(Sort.Direction.DESC, "fchreceta"));
     }
     
     @GetMapping("/paciente/{pacienteid}/{medicoid}")
@@ -66,7 +66,7 @@ public class cReceta {
        mMedico mmedico = new mMedico();
        mmedico.setMedicoid(medicoid);
        
-       return rreceta.findByMpacienteAndMmedico(mpaciente, mmedico);
+       return rreceta.findByMpacienteAndMmedico(mpaciente, mmedico,Sort.by(Sort.Direction.DESC, "fchreceta"));
        
     }
     

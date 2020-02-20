@@ -5,6 +5,7 @@
  */
 package com.doxa.recetapp.model;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
@@ -18,7 +19,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import lombok.Data;
@@ -31,7 +31,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 @Entity(name = "Recetas")
 @Data
-public class mReceta {
+public class mReceta implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
