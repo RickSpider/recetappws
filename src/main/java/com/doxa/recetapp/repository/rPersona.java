@@ -6,6 +6,7 @@
 package com.doxa.recetapp.repository;
 
 import com.doxa.recetapp.model.mPersona;
+import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -13,5 +14,7 @@ import org.springframework.data.repository.CrudRepository;
  * @author BlackSpider
  */
 public interface rPersona extends CrudRepository <mPersona, Long>{
+    
+    Optional<mPersona> findByCi(String ci);
     
 }
