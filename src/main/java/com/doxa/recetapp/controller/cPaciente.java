@@ -36,14 +36,14 @@ public class cPaciente {
     @Autowired
     private rPersona rpersona;
     
-    @GetMapping("/{pacienteid}")
+    @GetMapping(value = "/{pacienteid}", produces ="application/json")
     public @ResponseBody Optional<mPaciente> paciente (@PathVariable Long pacienteid){
     
         return rpaciente.findById(pacienteid);
         
     }
     
-    @PostMapping("/")
+    @PostMapping(produces ="application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody void addPaciente(@RequestBody mPaciente mpaciente){
     

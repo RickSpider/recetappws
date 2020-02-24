@@ -23,7 +23,7 @@ public class cMedicamento {
     @Autowired
     private rMedicamento rmedicamento;
     
-    @GetMapping("/")
+    @GetMapping(produces ="application/json")
     public Iterable<mMedicamento> getMedicamento(){
     
         return rmedicamento.findAll();

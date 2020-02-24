@@ -23,7 +23,7 @@ public class cCiudad {
     @Autowired
     private rCiudad rciudad;
     
-    @GetMapping("/")
+    @GetMapping(produces ="application/json")
     private Iterable<mCiudad> getCiudad(){
     
         return rciudad.findAll();

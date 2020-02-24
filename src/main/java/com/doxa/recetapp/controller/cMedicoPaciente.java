@@ -25,7 +25,7 @@ public class cMedicoPaciente {
     @Autowired
     private rMedicoPaciente rmedicopaciente;
     
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}", produces ="application/json")
     public @ResponseBody Iterable<mMedicoPaciente> getPacientesxMedicos(@PathVariable Long id){
         
         return rmedicopaciente.findBymedicoid(id);

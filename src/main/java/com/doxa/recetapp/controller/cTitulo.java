@@ -23,7 +23,7 @@ public class cTitulo {
     @Autowired
     private rTitulo rtitulo;
     
-    @GetMapping("/")
+    @GetMapping(produces ="application/json")
     public Iterable<mTitulo> getTitulo(){
     
         return rtitulo.findAll();

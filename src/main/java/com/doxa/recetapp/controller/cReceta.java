@@ -40,7 +40,7 @@ public class cReceta {
     @Autowired
     private rRecetaDetalle rrd;
     
-    @PostMapping("/")
+    @PostMapping(produces ="application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody void postReceta(@RequestBody mReceta mreceta){
 
@@ -48,7 +48,7 @@ public class cReceta {
         
     }
     
-    @GetMapping("/paciente/{pacienteid}")
+    @GetMapping(value="/paciente/{pacienteid}", produces ="application/json")
     public @ResponseBody Iterable<mReceta> recetas(@PathVariable Long pacienteid){
              
        mPaciente mpaciente = new mPaciente();
@@ -57,7 +57,7 @@ public class cReceta {
        return rreceta.findByMpaciente(mpaciente, Sort.by(Sort.Direction.DESC, "fchreceta"));
     }
     
-    @GetMapping("/paciente/{pacienteid}/{medicoid}")
+    @GetMapping(value = "/paciente/{pacienteid}/medico/{medicoid}", produces ="application/json")
     public @ResponseBody Iterable<mReceta> recetaspacientemedicos(@PathVariable Long pacienteid, @PathVariable Long medicoid){
         
        mPaciente mpaciente = new mPaciente();
@@ -70,14 +70,14 @@ public class cReceta {
        
     }
     
-    @GetMapping("/{recetaid}")
+    @GetMapping(value = "/{recetaid}", produces ="application/json")
     public Optional<mReceta> getReceta(@PathVariable Long recetaid){
     
         return rreceta.findById(recetaid);
         
     }
     
-      @GetMapping("/detalles/{recetaid}")
+      @GetMapping(value = "/detalles/{recetaid}",produces ="application/json")
       @JsonView({View.SummaryRecetaMedicamento.class})
       public @ResponseBody Iterable<mRecetaDetalle> detalles(@PathVariable Long recetaid){
     
