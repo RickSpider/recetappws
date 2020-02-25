@@ -78,7 +78,7 @@ public class cReceta {
         
         if (!omr.isPresent()){
         
-            return new ResponseEntity(omr, HttpStatus.NO_CONTENT);
+            return new ResponseEntity(omr, HttpStatus.NOT_FOUND);
             
         }
         

@@ -44,7 +44,7 @@ public class cMedicos {
         
         if(!omm.isPresent()){
         
-            return new ResponseEntity(omm, HttpStatus.NO_CONTENT);
+            return new ResponseEntity(omm, HttpStatus.NOT_FOUND);
             
         }
         

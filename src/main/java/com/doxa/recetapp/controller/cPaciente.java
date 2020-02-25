@@ -50,7 +50,7 @@ public class cPaciente {
         }
            
         
-        return new ResponseEntity(null, HttpStatus.NO_CONTENT);
+        return new ResponseEntity(null, HttpStatus.NOT_FOUND);
     
         //return rpaciente.findById(pacienteid);
         
