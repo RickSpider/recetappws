@@ -67,9 +67,10 @@ public class cLogin {
                 
                     mlogin.setId(mpaciente.get().getPacienteid());
                     
-                      return new ResponseEntity(mlogin,HttpStatus.OK);
-                    //return mlogin;
-                    
+                    if (!mlogin.isMedico()){
+                        return new ResponseEntity(mlogin,HttpStatus.OK);
+                    }                    
+       
                 }
                 
             }
