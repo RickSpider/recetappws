@@ -14,6 +14,8 @@ import com.doxa.recetapp.repository.rPaciente;
 import com.doxa.recetapp.repository.rPersona;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,10 +41,10 @@ public class cLogin {
     private rPersona rpersona;
     
     @PostMapping
-    public @ResponseBody mLogin login(@RequestBody mLogin mlogin ){
+    public @ResponseBody ResponseEntity<mLogin> login(@RequestBody mLogin mlogin ){
     
         Optional<mPersona> mpersona = rpersona.findByCi(mlogin.getUsername());
-        
+                
         if (mpersona.isPresent()){
         
             if (mlogin.isMedico()){
@@ -53,8 +55,8 @@ public class cLogin {
                 
                     mlogin.setId(mmedico.get().getMedicoid());
                     
-                    return mlogin;
-                    
+                    return new ResponseEntity(mlogin,HttpStatus.OK);
+                    //return mlogin;
                 }
                 
             }else{
@@ -65,7 +67,8 @@ public class cLogin {
                 
                     mlogin.setId(mpaciente.get().getPacienteid());
                     
-                    return mlogin;
+                      return new ResponseEntity(mlogin,HttpStatus.OK);
+                    //return mlogin;
                     
                 }
                 
@@ -73,7 +76,8 @@ public class cLogin {
             
         }
         
-        return null;
+              
+        return new ResponseEntity(null, HttpStatus.UNAUTHORIZED);
 
     }
     

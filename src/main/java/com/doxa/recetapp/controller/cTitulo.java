@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
  * @author BlackSpider
  */
 @RestController
-@RequestMapping("/titulo")
+//@RequestMapping("/titulo")
 public class cTitulo {
     
     @Autowired
     private rTitulo rtitulo;
     
-    @GetMapping(produces ="application/json")
+    @GetMapping(value = "/titulos",produces ="application/json")
     public Iterable<mTitulo> getTitulo(){
     
         return rtitulo.findAll();

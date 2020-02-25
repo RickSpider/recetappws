@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
  * @author BlackSpider
  */
 @RestController
-@RequestMapping("/ciudad")
+//@RequestMapping("/ciudad")
 public class cCiudad {
     
     @Autowired
     private rCiudad rciudad;
     
-    @GetMapping(produces ="application/json")
+    @GetMapping(value = "/ciudades",produces ="application/json")
     private Iterable<mCiudad> getCiudad(){
     
         return rciudad.findAll();

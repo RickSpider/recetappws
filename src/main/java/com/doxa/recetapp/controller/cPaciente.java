@@ -12,6 +12,7 @@ import com.doxa.recetapp.repository.rPersona;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("/paciente")
+//@RequestMapping("/paciente")
 public class cPaciente {
     
     @Autowired
@@ -36,14 +37,26 @@ public class cPaciente {
     @Autowired
     private rPersona rpersona;
     
-    @GetMapping(value = "/{pacienteid}", produces ="application/json")
-    public @ResponseBody Optional<mPaciente> paciente (@PathVariable Long pacienteid){
+    @GetMapping(value = "/paciente/{pacienteid}", produces ="application/json")
     
-        return rpaciente.findById(pacienteid);
+    public @ResponseBody ResponseEntity<Optional<mPaciente>> paciente (@PathVariable Long pacienteid){
+
+        Optional<mPaciente> omp = rpaciente.findById(pacienteid);
+        
+        if(omp.isPresent()){
+        
+             return new ResponseEntity(omp.get(), HttpStatus.OK);
+            
+        }
+           
+        
+        return new ResponseEntity(null, HttpStatus.NO_CONTENT);
+    
+        //return rpaciente.findById(pacienteid);
         
     }
     
-    @PostMapping(produces ="application/json")
+    @PostMapping(value ="/pacientes",produces ="application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody void addPaciente(@RequestBody mPaciente mpaciente){
     
@@ -65,5 +78,7 @@ public class cPaciente {
         //rpersona.save(mpersona);
         
     }
+
+    
     
 }

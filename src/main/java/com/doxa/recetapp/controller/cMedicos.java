@@ -12,6 +12,7 @@ import com.doxa.recetapp.repository.rPersona;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author BlackSpider
  */
 @RestController
-@RequestMapping("/medico")
+//@RequestMapping("/medico")
 public class cMedicos {
     
     @Autowired 
@@ -36,14 +37,24 @@ public class cMedicos {
     @Autowired
     private rPersona rpersona;
     
-    @GetMapping("/{id}")
-    public @ResponseBody Optional<mMedico> getOneMedico(@PathVariable Long id){
+    @GetMapping("/medico/{id}")
+    public @ResponseBody ResponseEntity<Optional<mMedico>> getOneMedico(@PathVariable Long id){
         
-        return rmedico.findById(id);
+        Optional<mMedico> omm = rmedico.findById(id);
+        
+        if(!omm.isPresent()){
+        
+            return new ResponseEntity(omm, HttpStatus.NO_CONTENT);
+            
+        }
+        
+        return new ResponseEntity(omm, HttpStatus.OK);
+        
+        //return rmedico.findById(id);
 
     }
     
-    @PostMapping(produces ="application/json")
+    @PostMapping(value="/medicos",produces ="application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody void postMedico(@RequestBody mMedico mmedico){
     
@@ -55,7 +66,7 @@ public class cMedicos {
         
     }
     
-    @PutMapping(produces ="application/json")
+    @PutMapping(value="/medicos",produces ="application/json")
     public @ResponseBody void putMedico(@RequestBody mMedico mmedico){
     
         mPersona persona = mmedico.getMpersona();
