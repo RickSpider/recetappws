@@ -54,7 +54,7 @@ public class cMedicos {
 
     }
     
-    @PostMapping(value="/medicos",produces ="application/json")
+    @PostMapping(value="/medico",produces ="application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody void postMedico(@RequestBody mMedico mmedico){
     
@@ -66,7 +66,7 @@ public class cMedicos {
         
     }
     
-    @PutMapping(value="/medicos",produces ="application/json")
+    @PutMapping(value="/medico",produces ="application/json")
     public @ResponseBody void putMedico(@RequestBody mMedico mmedico){
     
         mPersona persona = mmedico.getMpersona();

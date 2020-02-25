@@ -5,6 +5,7 @@
  */
 package com.doxa.recetapp.controller;
 
+import com.doxa.recetapp.model.mMedico;
 import com.doxa.recetapp.model.mPaciente;
 import com.doxa.recetapp.model.mPersona;
 import com.doxa.recetapp.repository.rPaciente;
@@ -16,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -56,7 +58,7 @@ public class cPaciente {
         
     }
     
-    @PostMapping(value ="/pacientes",produces ="application/json")
+    @PostMapping(value ="/paciente",produces ="application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody void addPaciente(@RequestBody mPaciente mpaciente){
     
@@ -77,6 +79,17 @@ public class cPaciente {
       
         //rpersona.save(mpersona);
         
+    }
+    
+    @PutMapping(value="/paciente",produces ="application/json")
+    public @ResponseBody void putMedico(@RequestBody mPaciente mpaciente){
+    
+        mPersona persona = mpaciente.getMpersona();
+        rpersona.save(persona);
+        
+        mpaciente.setPacienteid(persona.getPersonaid());
+        rpaciente.save(mpaciente);
+    
     }
 
     

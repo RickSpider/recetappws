@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,7 +40,7 @@ public class cReceta {
     @Autowired
     private rRecetaDetalle rrd;
     
-    @PostMapping(value = "/recetas",produces ="application/json")
+    @PostMapping(value = "/receta",produces ="application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public @ResponseBody void postReceta(@RequestBody mReceta mreceta){
 
@@ -49,7 +48,7 @@ public class cReceta {
         
     }
     
-    @GetMapping(value="/receta/paciente/{pacienteid}", produces ="application/json")
+    @GetMapping(value="/recetas/paciente/{pacienteid}", produces ="application/json")
     public @ResponseBody Iterable<mReceta> recetas(@PathVariable Long pacienteid){
              
        mPaciente mpaciente = new mPaciente();
@@ -58,7 +57,7 @@ public class cReceta {
        return rreceta.findByMpaciente(mpaciente, Sort.by(Sort.Direction.DESC, "fchreceta"));
     }
     
-    @GetMapping(value = "/receta/paciente/{pacienteid}/medico/{medicoid}", produces ="application/json")
+    @GetMapping(value = "/recetas/paciente/{pacienteid}/medico/{medicoid}", produces ="application/json")
     public @ResponseBody Iterable<mReceta> recetaspacientemedicos(@PathVariable Long pacienteid, @PathVariable Long medicoid){
         
        mPaciente mpaciente = new mPaciente();
@@ -93,7 +92,6 @@ public class cReceta {
       public @ResponseBody Iterable<mRecetaDetalle> detalles(@PathVariable Long recetaid){
     
             return rrd.findByReceta(recetaid);
-       
-          
+            
       }
 }
